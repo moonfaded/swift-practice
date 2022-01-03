@@ -1,0 +1,6 @@
+
+*.xcworkspacedata
+*.xcuserstate
+*.xctimeline
+*.plist
+.DS_Store
