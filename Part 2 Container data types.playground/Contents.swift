@@ -62,3 +62,27 @@ var (first, second) = (12, 21)
 print("first = \(first), second = \(second)")
 (first, second) = (second, first)
 print("first = \(first), second = \(second)")
+
+
+/*
+ Задание 6
+
+ 1) Создайте кортеж с двумя параметрами: ваш любимый фильм и ваше любимое число. Все элементы кортежа должны быть именованными.
+ 2) Одним выражением запишите каждый элемент кортежа в две константы. Проверьте значения параметров с помощью вывода в области результатов.
+ 3) Создайте псевдоним типа, используемого для первого кортежа, назовите его Man. Создайте второй кортеж типа Man, но описывающий другого человека (с другими значениями). Обратите внимание, что элементы кортежа так же должны иметь имена.
+ 4) Обменяйте значения в кортежах между собой.
+ 5) Создайте новый кортеж, элементами которого будут любимое число из первого кортежа, любимое число из второго кортежа и разница любимых чисел первого и второго кортежей.
+ */
+
+// 1
+var firstTuple: (myFavoriteMovie: String, myFavoriteNumber: Int) = ("50 shades of grey", 420)
+// 2
+let (firstFavoriteMovie, firstFavoriteNumber) = firstTuple
+print("Original tuple = \(firstTuple), created consts: myFavorite movie = \(firstFavoriteMovie), myFavoriteNumber = \(firstFavoriteNumber)")
+// 3
+typealias Man = (myFavoriteMovie: String, myFavoriteNumber: Int)
+var secondTuple: Man = ("Most Wanted", 69)
+// 4
+(firstTuple, secondTuple) = (secondTuple, firstTuple)
+// 5
+var fourthTuple = (firstTuple.myFavoriteNumber, secondTuple.myFavoriteNumber, firstTuple.myFavoriteNumber - secondTuple.myFavoriteNumber)
