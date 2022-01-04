@@ -1,6 +1,6 @@
 import UIKit
 
-//  Some practice with tuple data type
+//                          Lesson 3. Tuple (Кортеж).
 
 var myFirstTuple = ("my", 1, "tuple")
 
@@ -86,3 +86,69 @@ var secondTuple: Man = ("Most Wanted", 69)
 (firstTuple, secondTuple) = (secondTuple, firstTuple)
 // 5
 var fourthTuple = (firstTuple.myFavoriteNumber, secondTuple.myFavoriteNumber, firstTuple.myFavoriteNumber - secondTuple.myFavoriteNumber)
+
+
+//                      Lesson 5. Range (Диапазон)
+
+//              Homework
+
+/*
+ Задание 1
+
+ Покажите два способа создания диапазона, который содержит все целые числа от 1 до 9
+ */
+
+var (range1, range2) = (1...10, 1..<11)
+
+
+/*
+ Задание 3
+
+ Определите тип данных, которые будут иметь объявленные параметры
+ */
+
+/*
+ var range3 = 1..<10         //Range <Int>
+ var range4 = 1..            //Error
+ var range5 = ..<5           //PartialRangeUpTo <Int>
+ var range6 = -100...100     //ClosedRange <Int>
+ */
+
+
+/*
+ Задание 6
+
+ Создайте диапазон целых чисел от -100 до 100 и инициализируйте его константе range
+ Создайте переменную item типа UInt со значением 21.
+ Создайте переменную типа Bool и запишите в нее результат проверки наличия значения переменной item в диапазоне range. Каким образом произвести данную проверку?
+ */
+
+ let range7 = -100...100
+ var item: UInt = 21
+ var result: Bool = range7.contains(Int(item))
+
+
+/*
+ Задание 7
+
+ Создайте диапазон, содержащий все заглавные латинские символы.
+ Какими будут значения методов min() и max() для этого диапазона?
+ Какими будут значения свойств lowerBound и upperBound для этого диапазона?
+ */
+
+
+ var allUpperCaseLatinChars: ClosedRange<Character> = "A"..."Z"
+// allUpperCaseLatinChars.min() // error, works only for Int's ranges
+// allUpperCaseLatinChars.max() // error, works only for Int's ranges
+ allUpperCaseLatinChars.lowerBound //A
+ allUpperCaseLatinChars.upperBound //Z
+ 
+
+/*
+ Задание 8
+
+ Покажите два способа создания диапазона значений типа Float. В обоих способах должен использоваться оператор ...
+ */
+
+ var range8: ClosedRange<Float> = 1...2
+ var range9 = Float(1)...2
