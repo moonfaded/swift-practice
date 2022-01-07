@@ -88,7 +88,9 @@ var secondTuple: Man = ("Most Wanted", 69)
 var fourthTuple = (firstTuple.myFavoriteNumber, secondTuple.myFavoriteNumber, firstTuple.myFavoriteNumber - secondTuple.myFavoriteNumber)
 
 
-//                      Lesson 5. Range (Диапазон)
+
+
+//                          Lesson 5. Range (Диапазон)
 
 //              Homework
 
@@ -154,7 +156,9 @@ var (range1, range2) = (1...10, 1..<11)
  var range9 = Float(1)...2
 
 
-//                      Lesson 6. Array (Массив)
+
+
+//                          Lesson 6. Array (Массив)
 
 //              Homework
 
@@ -292,7 +296,7 @@ var secondArray: [UInt] = firstArray.dropLast().map(){UInt($0)}
 
 
 
-//                      Lesson 6. Set (Множество)
+//                          Lesson 7. Set (Множество)
 
 //      Practice
 var set1: Set = [1, 2, 3]
@@ -315,3 +319,88 @@ oddNumbers.symmetricDifference(differentNumbers)
 oddNumbers.union(evenNumbers)
 oddNumbers.subtract(differentNumbers)
 
+
+//      Homework
+
+/*
+ Задание 1
+
+ Какие из выражений не вызовут ошибок и вернут множество (т.е. функция type(of:) должна вернуть Set)
+ */
+
+
+var set5 = [1, 2, 3, 4, 5]     // false, Array
+type(of: set5)
+var set6: Set = [1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0]  // true
+type(of: set6)
+var set7: Set = ["a","c"]  //  true
+type(of: set7)
+var set8 = Set(arrayLiteral: -0, +0, 1, 2, 3)  //  true
+type(of: set8)
+var set9 = Set(arrayLiteral: 0, 1, 2, 3, 4)    //  true
+type(of: set9)
+
+
+/*
+ Задание 2
+
+ Что будет выведено на консоль в результате выполнения кода?
+ */
+
+/*
+ var mySet:Set = []
+ mySet.insert(13.4)
+ print( type (of: mySet.count ) ) // error
+ */
+  
+  
+/*
+ Задание 3
+
+ Что будет выведено на консоль в результате выполнения кода?
+ */
+
+ var mySet2: Set = [13.4, 15.1]
+ print( mySet2.contains( Double(13.4) ) )
+ 
+
+/*
+ Задание 4
+
+ Какой тип будут иметь созданные множества и их элементы (что вернет функция type(of:) для созданных множеств)?
+ */
+
+var setA: Set = [1, 2, 3, 4, 5]    //  Set<Int>.Type
+type(of: setA)
+var setB = Set( arrayLiteral: 1, 2, 3, 4, 5 )  //  Set<Int>.Type
+ type(of: setB)
+
+
+/*
+ Задание 5
+
+ Какие элементы будут содержаться в множестве resultSet в конце листинга?
+ */
+
+var setOne: Set = [0, 1, 2, 3]
+var setTwo: Set = [0, 2, 4, 6]
+var resultSet = setOne.union(setTwo)   //  [0, 1, 2, 3, 4, 6]
+resultSet.remove(4)    //  [0, 1, 2, 3, 6]
+resultSet
+
+
+/*
+ Задание 6
+
+ 1) Объявите множество taskSet1, состоящий из всех целочисленных элементов от 1 до 10
+ 2) Объявите множество taskSet2, состоящий из всех целочисленных элементов от 5 до 15
+ 3) Создайте множество taskSet3, состоящий из элементов, которые входят и в taskSet1, и в taskSet2
+ 4) Создайте множество taskSet4, состоящий из элементов, которые не пересекаются в taskSet1 и taskSet2
+ 5) Запишите в переменную count типа UInt8 количество элементов в массиве taskSet4. Какое значение примет эта переменная?
+ */
+
+var taskSet1 = Set<Int>(1...10)
+var taskSet2 = Set<Int>(5...15)
+var taskSet3 = taskSet1.union(taskSet2)
+var taskSet4 = taskSet1.symmetricDifference(taskSet2)
+var count = UInt8(taskSet4.count)   //  9
