@@ -288,3 +288,30 @@ type(of: arr20)
 
 var firstArray = [1,2,3,4,5]
 var secondArray: [UInt] = firstArray.dropLast().map(){UInt($0)}
+
+
+
+
+//                      Lesson 6. Set (Множество)
+
+//      Practice
+var set1: Set = [1, 2, 3]
+var set2: Set<Int> = [1, 2, 3]
+var set3 = Set(arrayLiteral: 1, 2, 3, 4)
+var set4 = Set<Int>(arrayLiteral: 1, 2, 3, 4)
+
+set1.insert(4)
+set1.insert(4)
+
+set1.remove(4)
+set1.removeAll()
+
+var oddNumbers: Set = [1, 3, 5]
+var evenNumbers: Set = [2, 4, 6]
+var differentNumbers: Set = [1, 4, 5, 6]
+
+oddNumbers.intersection(differentNumbers)
+oddNumbers.symmetricDifference(differentNumbers)
+oddNumbers.union(evenNumbers)
+oddNumbers.subtract(differentNumbers)
+
