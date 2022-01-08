@@ -360,8 +360,8 @@ type(of: set9)
  Что будет выведено на консоль в результате выполнения кода?
  */
 
- var mySet2: Set = [13.4, 15.1]
- print( mySet2.contains( Double(13.4) ) )
+var mySet2: Set = [13.4, 15.1]
+print( mySet2.contains( Double(13.4) ) )
  
 
 /*
@@ -373,7 +373,7 @@ type(of: set9)
 var setA: Set = [1, 2, 3, 4, 5]    //  Set<Int>.Type
 type(of: setA)
 var setB = Set( arrayLiteral: 1, 2, 3, 4, 5 )  //  Set<Int>.Type
- type(of: setB)
+type(of: setB)
 
 
 /*
@@ -404,3 +404,99 @@ var taskSet2 = Set<Int>(5...15)
 var taskSet3 = taskSet1.union(taskSet2)
 var taskSet4 = taskSet1.symmetricDifference(taskSet2)
 var count = UInt8(taskSet4.count)   //  9
+
+
+
+
+//                          Lesson 8. Dictionary (Словарь)
+
+//      Homework
+
+/*
+ Задание 1
+
+ В результате каких из выражений будет создан словарь? Какой тип данных будет у созданных параметров?
+ */
+
+var dict1: Dictionary = ["One":(100,101),"Two":(200,201)]  //  Dictionary<String, (Int, Int)>.Type
+type(of: dict1)
+// var dict2: Dictionary = [(1,2,3):1, (2,3,4):2] //  error, not Hashable
+// var dict3: Dictionary<Int,Int> = [1:13.3, 2:14.1, 3: 16.9] //  type error
+var dict4 = Dictionary(uniqueKeysWithValues: [(1,2), (3,4), (5,6)])    //  Dictionary<Int, Int>.Type
+type(of: dict4)
+var dict5 = ["Alex": 1989, "John": 2002, "Harold": 1951]   //  Dictionary<String, Int>.Type
+type(of: dict5)
+// var dict6: Dictionary = [1, 2, 3, 4]   //  error
+
+
+/*
+ Задание 2
+
+ 1) Какой тип будет иметь словарь, ключи элементов которого будут строковыми значениями (String), а значения элементов – символьными (Character)    //  Dictionary<String, Character>.Type
+ 2) Покажите все известные вам способы создания словаря такого типа. Экспериментируйте, вполне вероятно мы с вами можем ответить на данный вопрос разными способами.
+ */
+
+var dict7: Dictionary<String, Character> = ["letterA":"a", "letterB":"b"]
+type(of: dict7)
+
+var dict8: [String:Character] = ["letterA":"a", "letterB":"b"]
+type(of: dict11)
+
+var dict9 = Dictionary<String, Character>(dictionaryLiteral: ("letterA", "a"), ("letterB", "b"))
+type(of: dict11)
+
+var dict10 = Dictionary(uniqueKeysWithValues: [("letterA", "a"), ("letterB", "b")])
+type(of: dict11)
+
+var keysForZip = ["letterA", "letterB"]
+var valuesForZip = [Character("a"), "b"]
+var dict11 = Dictionary(uniqueKeysWithValues: zip(keysForZip, valuesForZip))
+type(of: dict11)
+
+var dict12 = ["letterA":Character("a"), "letterB":"b"]
+type(of: dict12)
+
+
+/*
+ Задание 3
+
+ Какое значение будет у переменной result?
+ */
+
+ var myArray1: Array<UInt> = [1,2,3,4,5]
+ var myDict1 = [1:2, 3:4, 5:6]
+ var result1 = myArray1.count + Int(myArray1[3]) + myDict1.count //  5 + 4 + 3 = 12
+
+
+/*
+ Задание 4
+
+ 1) Создайте словарь типа Dictionary<Int, String> и наполните его тремя элементами
+ 2) Запишите в множество все ключи словаря
+ 3) Запишите в массив все значения словаря
+ 4) Создайте множество, состоящее из всех значений коллекций из пунктов 2 и 3
+ Будьте очень внимательны при решении заданий
+ */
+
+var dict13 = [1:"one", 2:"two", 3:"three"]
+
+var set10 = Set(dict13.keys)
+type(of: set10)
+var arr23 = Array(dict13.values)
+type(of: arr23)
+
+//  set11 = error, unable to create sequance with different types
+
+
+/*
+ Задание 5
+
+ 1) Создайте словарь типа Dictionary<Int, Array<String>> и наполните его произвольными значениями
+ 2) Запишите в константу dictElCount количество элементов в словаре
+ 3) Создайте массив, состоящий из dictElCount одинаковых элементов, значений которых dictElCount. Какой тип данных будет у созданного массива?
+ */
+
+var dict14: Dictionary<Int, Array<String>> = [1:["a","b", "c"], 2:["d", "e", "f"]]
+let dictElCount = dict14.count
+let arrOfDictElCount = Array(repeating: dictElCount, count: dictElCount)    //  Array<Int>.Type
+type(of: arrOfDictElCount)
