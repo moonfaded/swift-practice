@@ -500,3 +500,66 @@ var dict14: Dictionary<Int, Array<String>> = [1:["a","b", "c"], 2:["d", "e", "f"
 let dictElCount = dict14.count
 let arrOfDictElCount = Array(repeating: dictElCount, count: dictElCount)    //  Array<Int>.Type
 type(of: arrOfDictElCount)
+
+
+
+
+//                          Lesson 9. String (Строка - коллекция символов)
+
+//              Homework
+
+
+/*
+ Задание 1
+
+ 1) Создайте переменную типа String со значением “Swift”
+ 2) Создайте константу типа Character с произвольным значением
+ 3) Создайте массив в соответсвии со следующими требованиями:
+ – количество элементов должно соответствовать количеству символов
+ – значения элементов должны быть такими же, как у константы из пункта 2
+ – тип массива должен быть Array<String>
+ 4) Проиницилизируйте значение константы из пункта 2 в переменную из пункта 1
+ */
+
+var string = "Swift"
+let character: Character = "a"
+let array = Array(repeating: String(character), count: string.count)
+string = String(character)
+
+
+/*
+ Задание 2
+
+ 1) Создайте константу со строковым значением "JonhWick"
+ 2) Получите индекс первого символа строки.
+ Используя полученный индекс выведите на консоль первый символ строки из пункта 1
+ 3) Одним выражением получите индекс последнего символа строки из пункта 1
+ Используя полученный индекс выведите на консоль последний символ строки из пункта 1
+ 4) Запишите в новую константу первые четыре символа из строки "БабаЯга"
+ Какой тип данных будет у созданной константы
+ */
+
+let const = "JohnWick"
+
+let indexOfFirstSymbol = const.startIndex
+print(const[indexOfFirstSymbol])
+
+let indexOfLastSymbol = const.index(before: const.endIndex)
+print(const[indexOfLastSymbol])
+
+let stroka = "БабаЯга"
+let babaStartIndex = stroka.startIndex
+let babaFourthIndex = stroka.index(babaStartIndex, offsetBy: 3)
+let firstFourSymbols = stroka[babaStartIndex...babaFourthIndex] //  Substring.Type
+type(of: firstFourSymbols)
+
+
+/*
+ Задание 3
+
+ Самостоятельно в сети Интернет найдите кодовые точки для Unicode-символов “шахматные фигуры”, после чего создайте два множества типа Set<Character>, состоящие из данных символов.
+ Первое множество должно содержать все фигуры черного цвета, а второе – белого.
+ */
+
+var whiteSet: Set<Character> = ["\u{2654}", "\u{2655}", "\u{2656}", "\u{2657}", "\u{2658}", "\u{2659}"]
+var blackSet: Set<Character> = ["\u{265A}", "\u{265B}", "\u{265C}", "\u{265D}", "\u{265E}", "\u{265F}"]
