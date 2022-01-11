@@ -164,3 +164,149 @@ for testTuple in testTupleArray {
     default: print("Operation \(testTuple.operation) isn't supported")
     }
 }
+
+
+
+
+
+//                  Lesson 11. Optionals
+
+//              Practice
+
+var tuple1: (Int, Int)
+type(of: tuple1)
+var tuple: (Int, Int)?
+type(of: tuple)
+
+
+//              Homework
+
+/*
+ Задание 1
+
+ Какое значение у каждой из приведенных переменных?
+ */
+
+ var easy: String?  //  nil
+ var medium: String!    //  nil
+ var hard: String       // error, not declared
+
+
+/*
+ Задание 2
+
+ В чем отличие переменных easy и medium из предыдущего задания?
+ medium will be unwrapped automatically when called and cause error if nil
+ */
+
+
+/*
+ Задание 3
+
+ Будет ли корректно выполнен следующий программный код? Если в нем присутствуют ошибки, то по-возможности исправьте их.
+ */
+
+easy = "1"
+medium = "contra"
+hard = "play game"
+easy = medium
+hard = medium
+// easy = hard!     -> attempts to inwrap unoptional, reduntant
+easy = hard
+var gameTuple = (easy, Optional(hard))
+// var gameText: String = gameTuple.0   -> gameTuple.0 returns Optional<String>.Type, not a String
+var gameText = gameTuple.0!
+
+
+/*
+ Задание 4
+
+ Покажите не менее трех способов (с помощью разных синтаксических конструкций) создания переменной типа String?
+ */
+
+var str1: String = "str1"
+var str2 = "str2"
+var str3: String? = String("str3")
+
+
+/*
+ Задание 5
+
+ 1) Создайте псевдоним типа String с именем Text
+ 2) Объявите три константы типа Text. Значения дух констант должны состоять только из цифр, а третьей – из букв и цифр
+ 3) С помощью оператора условия определите те константы, которые состоят только из цифр и выведите из на консоль
+ */
+
+typealias Text = String
+
+let text1: Text = "123"
+let text2: Text = "456"
+let text3: Text = "abc1"
+
+var arr = [text1, text2, text3]
+var onlyNumbers: [String] = []
+
+for const in arr where Int(const) != nil {
+    onlyNumbers.append(const)
+}
+onlyNumbers
+
+
+/*
+ Задание 6
+
+ В задании используются результаты предыдущего задания
+ 1) Создайте псевдоним типа (numberOne: Text?, numberTwo: Text?) с именем TupleType.
+ 2) Создайте три переменные типа TupleType, содержащие следующие значения: ("190", "67"), ("100", nil), ("-65", "70").
+ 3) С помощью конструкции switch-case определите, какие из кортежей не содержат nil в своем составе и выведите значения их элементов на консоль
+ */
+
+typealias TupleType = (numberOne: Text?, numberTwo: Text?)
+
+var first: TupleType = ("190", "67")
+var second: TupleType = ("100", nil)
+var third: TupleType = ("-65", "70")
+
+var arr1 = [first, second, third]
+
+for tuple in arr1 {
+    switch tuple {
+    case (nil, nil), (nil,_), (_,nil):
+        break
+    default:
+        print(tuple)
+    }
+}
+
+
+/*
+ Задание 7
+
+ Представьте, что вы являетесь преподавателем курсов по шахматам. Ваши занятия посещают ученики и в конце каждого занятия получаю оценку.
+ 1) Создайте словарь, который будет содержать информацию о ваших студентах и об их успехах.
+
+ Тип данных словаря – [String: [String: UInt]]
+ Индекс – это фамилия ученика.
+ Значение – еще один словарь, содержащий информацию о дате занятия и полученной оценке.
+ В вашем электронном журнале должна находиться информация о трех учениках, по две оценки для каждого. Фамилии и даты придумайте самостоятельно.
+ 2) Подсчитайте средний балл каждого студента, средний балл группы, и выведите информацию на консоль.
+ */
+
+var students2: [String: [String : UInt]] = [:]
+students2["Петров"] = ["01.01" : 4, "02.01" : 6]
+students2["Иванов"] = ["03.01" : 9, "04.01" : 8]
+students2["Сидоров"] = ["05.01" : 7, "06.01" : 9]
+
+var avgGroupGrade: Float = 0
+var groupMarksCount: Float = 0
+
+for student in students2 {
+    var avgStudentGrade: Float = 0
+    for mark in student.value.values {
+        avgGroupGrade += Float(mark);
+        avgStudentGrade += Float(mark);
+        groupMarksCount += 1;
+    }
+    print("Avg mark for student \(student.key) = \(avgStudentGrade / Float(student.value.values.count))")
+}
+print("Avg mark for group = \(avgGroupGrade / groupMarksCount)")
