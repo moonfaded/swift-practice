@@ -310,3 +310,50 @@ for student in students2 {
     print("Avg mark for student \(student.key) = \(avgStudentGrade / Float(student.value.values.count))")
 }
 print("Avg mark for group = \(avgGroupGrade / groupMarksCount)")
+
+
+/*
+ Задание 8
+
+ Основано на предыдущем задании
+ Перед вам стоит задача внести в уже существующий словарь оценку за еще одно занятие для студента. Покажите, каким образом это можно сделать.
+ */
+
+students2["Петров"]?["10.10"] = 6
+students2["Петров"]!["11.10"] = 7
+
+if var rofl = students2["Петров"] {
+    rofl["11.11"] = 2
+    students2["Петров"] = rofl
+}
+
+students2["Петров"] = ["10.10": 1, "11.11": 2, "01.01": 4, "02.01": 6, "11.10": 8, "2222": 10]
+
+print(students2["Петров"]!)
+
+
+
+/*
+ Задание 9
+
+ 1) Создайте псевдоним Coordinates для типа кортежа (alpha: Character?, num: Int?). Данный тип будет описывать координаты шахматной фигуры на игровом поле. Если вместо элементов кортежа стоит nil, значит фигура не находится на игровом поле.
+ 2) Создайте псевдоним Chessman для типа словаря [String:Coordinates]. Данный тип описывает шахматную фигуру на игровом поле. В ключе словаря должно хранится имя фигуры, например "White King", а в значении – кортеж, указывающий на координаты фигуры на игровом поле.
+ 3) Создайте переменный словарь figures типа Chessman и добавьте в него три произвольные фигуры, одна из которых не должна иметь координат.
+ 4) Создайте цикл, которая обходит всех элементы словаря (все фигуры), и проверяет, убита ли очередная фигура (элемент словаря figures), далее выводит на консоль информацию либо о координатах фигуры, либо о ее отсутствии на игровом поле.
+ */
+
+
+typealias Coordinates = (alpha: Character?, num: Int?)
+typealias Chessman = [String: Coordinates]
+var figures: Chessman = [:]
+figures["White King"] = ("A", 5)
+figures["Black King"] = ("B", 4)
+figures["Black Queen"] = (nil, nil)
+
+for figure in figures {
+    if figure.value.num != nil || figure.value.alpha != nil {
+        print("Figure \(figure.key) is on board! Coordinates: \(figure.value)")
+    } else {
+        print("Figure \(figure.key) is upsent on board, containing wrong coordinates (\(figure.value)")
+    }
+}
