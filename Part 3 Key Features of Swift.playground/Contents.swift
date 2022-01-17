@@ -565,3 +565,98 @@ func ball(floorHeightMeters: Double, boyFloor: Double, momFloor: Double, coefOfJ
     return count
 }
 print("Count = \(ball(floorHeightMeters: floorHeightMetersExample, boyFloor: boyFloorExample, momFloor: momFloorExample, coefOfJump: coefOfJumpExample))")
+
+
+/*
+ Задание 10
+
+ Напишите функцию, которая принимает параметр типа String, а возвращает true (типа Bool) если в строке есть только уникальные символы, и false, если в ней есть хотя бы один повторяющийся символ.
+ */
+
+func origin(s: String) -> Bool {
+    var d: Set<Character> = []
+    for x in s {
+        if !d.insert(x).inserted {
+            return false
+        }
+    }
+    return true
+}
+print("Results = \(origin(s: "abc9de9"))")
+print("Results = \(origin(s: "abcde"))")
+
+func origin1(s: String) -> Bool {
+    Set(s).count == s.count
+}
+print("Results = \(origin1(s: "abc9de9"))")
+print("Results = \(origin1(s: "abcde"))")
+
+
+/*
+ Задание 11
+
+ Напишите функцию, которая определяет, состоят ли две переданные в нее строки из одних и тех же символов.
+
+ Пример:
+
+ funcName(in: "abc", and: "bca") // true
+ funcName(in: "abc", and: "bcaa") // false
+ */
+
+func qualChars(text: String, and: String) -> Bool {
+    Array(text).sorted() == Array(and).sorted()
+}
+print(qualChars(text: "abb", and: "bab"))
+print(qualChars(text: "abc", and: "bcaa"))
+
+
+/*
+ Задание 12
+
+ Напишите функцию, которая принимает на вход целочисленный диапазон и возвращает из него все простые числа.
+ */
+
+func getSimple(range: Range<Int>) -> [Int] {
+    var result: Array<Int> = []
+main: for number in range where number != 1{
+    for divider in 2..<number {
+            if number % divider == 0 {
+                continue main
+            }
+        }
+        result.append(number)
+    }
+    return result
+}
+print(getSimple(range: 1..<100))
+print(getSimple(range: 100..<200))
+
+
+/*
+ Задание 13
+
+ Реализуйте функцию pow(Int,Int), которая принимает два целочисленных элемента. Первый указывает на степень второго числа. Результат функции – второй аргумент функции, возведенный в степень (первый аргумент функции).
+
+ Предполагается, что аргументы могут быть только целыми положительными числами.
+ */
+
+func pow1(power: Int, number: Int) -> Int {
+    var leftPower = power
+    var result = number
+    while leftPower != 1 {
+        result *= number
+        leftPower -= 1
+    }
+    return result
+}
+print(pow1(power: 4, number: 2))
+
+func pow2(power: Int, number: Int) -> Int {
+    guard power > 0, number > 0 else { return 0 }
+    var result = 1
+    for _ in 1...power {
+        result *= number
+    }
+    return result
+}
+print(pow2(power: 3, number: 3))
