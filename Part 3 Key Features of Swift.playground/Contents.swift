@@ -357,3 +357,211 @@ for figure in figures {
         print("Figure \(figure.key) is upsent on board, containing wrong coordinates (\(figure.value)")
     }
 }
+
+
+//                  Lesson 11. Functions
+
+//              Practice
+
+func giveSum (_ a: Int, _ b: Int) -> Int {
+    a+b
+}
+giveSum(1, 1)
+
+
+//              Homework
+
+/*
+ Задание 1
+
+ Разработайте функцию, которая принимает на вход значение типа Bool, преобразует его в строку и возвращает. То есть передав true типа Bool должно вернуться "true" типа String, то же самое и для false.
+ */
+
+func boolToString(_ bool: Bool) -> String {
+    String(true)
+}
+print(boolToString(false))
+
+
+/*
+ Задание 2
+
+ Напишите функцию, которая принимает на вход массив с элементами типа Int, а возвращает целое число – сумму всех положительных элементов переданного массива.
+ К примеру для массива [1,-2,3,4,-5] должно быть возвращено 1+3+4 = 8
+ */
+
+func positiveSum(_ arr: [Int]) -> Int {
+    var result = 0;
+    for int in arr where int > 0 {
+        result += int
+    }
+    return result
+}
+print(positiveSum([1,-2,3,4,-5]))
+
+
+/*
+ Задание 3
+
+ Напишите функцию, которая принимает на вход массив типа [Int] и, в случае, если количество элементов > 0, то возвращает целое число – произведение всех элементов переданной коллекции. Если количество элементов = 0, то возвращается 0.
+ Пример:
+ [1,2,3,4] -> 1 * 2 * 3 * 4 = 24
+ */
+
+func multArr(_ arr: [Int]) -> Int {
+    var result = 0
+    if arr.count != 0 {
+        result = 1
+        for number in arr {
+            result *= number
+        }
+    }
+    return result
+}
+print(multArr([1,2,3,4]))
+print(multArr([]))
+
+
+/*
+ Задание 4
+
+ Используя перегрузку (overloading) создайте две одноименные функции, которые могут принимать два однотипных параметра (Int или Double) и возвращают их произведение
+ Пример:
+ (4, 5) -> 4 * 5 = 20
+ (4.1, 5.2) -> 4.1 * 5.2 = 21.32
+ */
+
+func mult(_ a: Int, _ b: Int) -> Int {
+    a*b
+}
+func mult(_ a: Double, _ b: Double) -> Double {
+    a*b
+}
+print(mult(4, 5))
+print(mult(4.1, 5.2))
+
+
+/*
+ Задание 5
+
+ Напишите функцию, которая принимает на вход целое число и возвращает противоположное ему целое число
+ Пример
+ -12 -> 12
+ 32 -> -32
+ */
+
+func opposite(_ a: Int) -> Int {
+    -a
+}
+opposite(-12)
+opposite(32)
+
+
+/*
+ Задание 6
+
+ Напишите функцию, которая производит подсчет стоимости аренды квартиры с учетом следующих условий:
+ 1. Один день аренды стоит 850 рублей
+ 2. При аренде от 3 дней вы получаете скидку в размере 550 рублей от общей суммы
+ 3. При аренде от 7 дней вы получаете скидку в размере 1620 рублей от общей суммы
+ Функция должна принимать на вход количество дней, а возвращать итоговую сумму.
+ Пример
+ funcName(5) -> 3700
+ funcName(9) -> 6030
+ */
+
+func rent(days: Int) -> Int {
+    let oneDayRentPrice = 850
+    var result = days * oneDayRentPrice
+    switch days {
+    case 3..<7: result -= 550
+    case 7...: result -= 1620
+    default: break
+    }
+    return result
+}
+rent(days: 5)
+rent(days: 9)
+
+
+/*
+ Задание 7
+
+ Напишите функцию, которая принимает на вход массив типа [Int] и значение Int, проверяет содержится ли целочисленный элемент в массиве и возвращает true или false в зависимости от результата проверки
+ Покажите не менее двух способов решения данной задачи
+ Пример:
+ funcName([1,2,3], 4) -> false
+ funcName([2,3,4], 3) -> true
+ */
+
+func contain(_ arr: [Int], _ val: Int) -> Bool {
+    arr.contains(val)
+}
+contain([1,2,3], 4)
+contain([2,3,4], 3)
+
+func contain1(_ arr: [Int], _ val: Int) -> Bool {
+    for element in arr where element == val {
+        return true
+    }
+    return false
+}
+contain1([1,2,3], 4)
+contain1([2,3,4], 3)
+
+
+/*
+ Задание 8
+
+ Напишите функцию, которая повторяет заданную строку N раз.
+ Функция принимает на вход значение типа String (строку для повторений) и значение типа Int (количество повторений) и возвращает полученный результат.
+ Пример:
+ funcName("Swift", 2) -> "SwiftSwift"
+ funcName("Xcode", 0) -> ""
+ */
+
+func printXtimes(_ text: String, _ count: Int) -> String {
+    String(repeating: text, count: count)
+}
+printXtimes("Swift", 2)
+printXtimes("Xcode", 0)
+
+
+/*
+ Задание 9
+
+ Мальчик находится на N-ом этаже в здании. Мама мальчика смотрит в окно на M-ом этаже здания. Мальчик выпускает из рук мячик, он летит вниз, отскакивает на (высота броска) * L, вновь летит вниз, вновь отскакивает на (высота предыдущего отскока) * L и т.д, пока не окончит отскакивать.
+ Реализуйте функцию, которая высчитывает, сколько раз мяч пролетит мимо мамы (вниз и вверх). Функция должна принимать на вход следующие параметры:
+ – высота одного этажа (h > 0)
+ – этаж мальчика (N >= 2)
+ – этаж мамы (M >= 1)
+ – коэффициент отскока (L < 1)
+ */
+
+let floorHeightMetersExample = 3.0
+let boyFloorExample = 15.0
+let momFloorExample = 3.0
+let coefOfJumpExample = 0.5
+var count = 0
+
+func ball1(height h: Double, boyFloor N: Double, momFloor M: Double, ratio L: Double) -> Int {
+    var number = 1
+    var currentFloor = N * L
+    while currentFloor >= M {
+        number += 2
+        currentFloor *= L
+    }
+    return number
+}
+print("Kek = \(ball1(height: floorHeightMetersExample, boyFloor: boyFloorExample, momFloor: momFloorExample, ratio: coefOfJumpExample))")
+
+
+func ball(floorHeightMeters: Double, boyFloor: Double, momFloor: Double, coefOfJump: Double) -> Int {
+    count += 1
+    if boyFloor*coefOfJump >= momFloor {
+        count += 1
+        ball(floorHeightMeters: floorHeightMeters, boyFloor: boyFloor*coefOfJump, momFloor: momFloor, coefOfJump: coefOfJump)
+    }
+    return count
+}
+print("Count = \(ball(floorHeightMeters: floorHeightMetersExample, boyFloor: boyFloorExample, momFloor: momFloorExample, coefOfJump: coefOfJumpExample))")
