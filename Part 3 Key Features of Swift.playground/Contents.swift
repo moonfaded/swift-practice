@@ -359,7 +359,7 @@ for figure in figures {
 }
 
 
-//                  Lesson 11. Functions
+//                  Lesson 12. Functions
 
 //              Practice
 
@@ -660,3 +660,218 @@ func pow2(power: Int, number: Int) -> Int {
     return result
 }
 print(pow2(power: 3, number: 3))
+
+
+
+
+//                  Lesson 13. Closures (Замыкания)
+
+//              Test
+
+/*
+ Question 1 of 19
+ Есть ли в данном коде ошибки? Если есть, то исправьте их.
+
+ let printDocument = { (copies: Int)
+   for _ in 1...copies {
+     print("Printing document...")
+   }
+ }
+ 
+                После списка входных параметров замыкания пропущено ключевое слово in.
+ */
+
+let printDocument = { (copies: Int) in
+    for _ in 1...copies {
+        print("Printing document...")
+    }
+}
+printDocument(3)
+
+
+/*
+ Question 2 of 19
+ Есть ли в данном коде ошибки? Если есть, то исправьте их.
+
+ let sendMessageToFacebook = { (message: String) in
+     if message != "" {
+         print("Sending to Facebook: \(message)")
+     } else {
+         print("Your message was empty.")
+     }
+ }
+ 
+                LGFM
+ */
+
+let sendMessageToFacebook = { (message: String) in
+    if message != "" {
+        print("Sending to Facebook: \(message)")
+    } else {
+        print("Your message was empty.")
+    }
+}
+sendMessageToFacebook("ms")
+
+
+/*
+ Question 3 of 19
+ Есть ли в данном коде ошибки? Если есть, то исправьте их.
+
+ var tuple: () -> String = {
+     return "Hello, World!"
+     
+  }
+  
+ let anotherTuple = tuple
+ print(anotherTuple())
+ 
+                lgfm
+ */
+
+var tuple11: () -> String = {
+    return "Hello, World!"
+    
+ }
+ 
+let anotherTuple = tuple11
+print(anotherTuple())
+
+
+/*
+ Question 4 of 19
+ Есть ли в данном коде ошибки? Если есть, то исправьте их.
+
+ var swift {
+   print("Cool - I can use closures!")
+ }
+ func writeCode(using language: () -> Void) {
+   language()
+   print("That'll be eleventy billion dollars, please.")
+ }
+ writeCode(using: swift)
+ 
+                Missing '=' in closure declaration
+ */
+
+var swift = {
+    print("Cool - I can use closures!")
+}
+func writeCode(using language: () -> Void) {
+  language()
+  print("That'll be eleventy billion dollars, please.")
+}
+writeCode(using: swift)
+
+
+/*
+ Question 5 of 19
+ Есть ли в данном коде ошибки? Если есть, то исправьте их.
+
+ func proxy(  closure: ()->Void ) -> () -> Void {
+     return closure
+ }
+ var closure = proxy() {
+     print("Hello, World!")
+ }
+ closure()
+                closure have to be @escaping to get out of func
+ */
+
+func proxy(closure: @escaping ()->Void ) -> () -> Void {
+    return closure
+}
+var closure = proxy() {
+    print("Hello, World!")
+}
+closure()
+
+
+/*
+ Question 6 of 19
+ Есть ли в данном коде ошибки? Если есть, то исправьте их.
+
+ var signAutograph(to name: String) = {
+     print("To \(name), my #1 fan")
+ }
+ signAutograph(to: "Lisa")
+                wrong closure declaration; no keyword arguments allowed
+ */
+
+var signAutograph = { (name: String) in
+    print("To \(name), my #1 fan")
+}
+signAutograph("Lisa")
+
+
+/*
+ Question 8 of 19
+ Есть ли в данном коде ошибки? Если есть, то исправьте их.
+
+ func modify(string: String, with closure: (String) -> (String) ) -> String {
+     return closure(string)
+ }
+ let result = modify(string: "Hello") { string in
+     return "\(string), World!"
+ }
+ print(result)
+                lgfm
+ */
+
+func modify(string: String, with closure: (String) -> (String) ) -> String {
+    return closure(string)
+}
+let result11 = modify(string: "Hello") { string in
+    return "\(string), World!"
+}
+print(result11)
+
+
+/*
+ Question 9 of 19
+ Что будет выведено на консоль?
+
+ var lang = "ObjC"
+ let updateLanguage: (inout String) -> () = { lang in
+     lang = "Swift"
+ }
+ updateLanguage(&lang)
+ print(lang)
+                        Swift
+ */
+
+
+/*
+ Question 10 of 19
+ Что будет выведено на консоль?
+
+ var thing = "cars"
+ let closure = { [thing] in
+   print("I love \(thing)")
+ }
+ thing = "airplanes"
+ closure()
+                I love cars
+ */
+
+
+/*
+ Question 11 of 19
+ Есть ли в данном коде ошибки? Если есть, то исправьте их.
+
+ var doPaint = { (name: String) in
+   print("I'm painting the \(name).")
+ }
+ doPaint("flower")
+        good
+ */
+
+
+
+
+//              Homework
+
+
+/*
+
+ */
