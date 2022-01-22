@@ -64,3 +64,45 @@ greenSeason = .summer
 var orangeSeason: Seasons = .autumn
 var bestSeason = whiteSeason
 bestSeason = .summer
+
+
+/*
+ Задание 3
+
+ Простейшая модель сущности “Шахматная фигура” может быть выполнена с помощью перечисления.
+ 1) Создайте перечисление Chessman, члены которого определяют возможные типы шахматных фигур (всего 6 типов, без учета цвета).
+ 2) Внутри перечисления Chessman создайте перечисление Color, определяющее возможные цвета шахматных фигур.
+ 3) Для каждого члена перечисления Chessman создайте связанный параметр типа Color, позволяющий указать цвет шахматной фигуры
+ 4) Создайте несколько экземпляров типа Chessman, каждый из которых описывает свою шахматную фигуру
+ 5) Напишите конструкции switch-case, способную обрабатывать параметр типа Chessman и выводить на консоль информацию о типе и цвете фигуры
+ 6) Создайте новую переменную и инициализируйте ей значение типа Color, вложенного в перечисление Chessman
+ */
+
+enum Chessman {
+    case pawn(ChessColors)
+    case bishop(ChessColors)
+    case knight(ChessColors)
+    case rook(ChessColors)
+    case queen(ChessColors)
+    case king(ChessColors)
+    
+    enum ChessColors {
+        case black, white
+    }
+    
+    func printProps() -> Void {
+        switch self {
+        case .pawn(let color): print("Proerties of piece: type = pawn, color = \(color)")
+        case .bishop(let color): print("Proerties of piece: type = bishop, color = \(color)")
+        case .knight(let color): print("Proerties of piece: type = knight, color = \(color)")
+        case .rook(let color): print("Proerties of piece: type = rook, color = \(color)")
+        case .queen(let color): print("Proerties of piece: type = queen, color = \(color)")
+        case .king(let color): print("Proerties of piece: type = king, color = \(color)")
+        }
+    }
+}
+var blackQueen: Chessman = .queen(.black)
+var whiteKing = Chessman.king(.white)
+var whitePawn = Chessman.pawn(.white)
+
+var colorFromEnum = Chessman.ChessColors.white
