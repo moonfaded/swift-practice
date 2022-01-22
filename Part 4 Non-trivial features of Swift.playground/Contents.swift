@@ -106,3 +106,32 @@ var whiteKing = Chessman.king(.white)
 var whitePawn = Chessman.pawn(.white)
 
 var colorFromEnum = Chessman.ChessColors.white
+
+
+/*
+ Задание 4
+
+ 1) Создайте перечисление Day, члены которого указывают на дни недели.
+ В составе перечисления создайте вычисляемое свойство, которое возвращает наименование дня недели на русском языке (значение типа String), соответсвующее выбранному члену перечисления
+ 2) Проверьте работу перечисления с помощью следующих выражений
+
+ let mon = Day.monday
+ print(mon.label) // Понедельник
+ print(Day.friday.label) // Пятница
+ */
+
+enum Day: String {
+    case monday = "Понедельник"
+    case tuesday = "Вторник"
+    case wednesday = "Среда"
+    case thusday = "Черверг"
+    case friday = "Пятница"
+    case saturday = "Суббота"
+    case sunday = "Воскресенье"
+    
+    var label: String { return rawValue}
+}
+
+let mon = Day.monday
+print(mon.label) // Понедельник
+print(Day.friday.label) // Пятница
