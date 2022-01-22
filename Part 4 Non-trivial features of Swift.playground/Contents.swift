@@ -46,3 +46,21 @@ multAndDivExample.evaluate()
 
 let powerExample: ArithmeticExpression = .power(.number(2), .number(4))
 powerExample.evaluate()
+
+
+/*
+ Задание 2
+
+ Корректно ли будет выполнен данный код? Если нет, то какие правки необходимо в него внести, чтобы исправить ошибки?
+ */
+
+enum Seasons{
+    case winter, spring, summer, autumn
+}
+let whiteSeason = Seasons.winter
+var greenSeason: Seasons = .spring
+greenSeason = .summer
+// var orangeSeason = .autumn
+var orangeSeason: Seasons = .autumn
+var bestSeason = whiteSeason
+bestSeason = .summer
