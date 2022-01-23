@@ -168,5 +168,75 @@ print(point1.distanceTo(point2))
 
 
 /*
+ Задание 2
+
+ Ранее мы уже моделировали с вами сущность шахматная фигура с помощью перечисления Chessman. В этот раз мы смоделируем фигуру с помощью структуры, значительно расширив возможности данной модели. Вы конечно же можете использовать наработки из заданий главы “Перечисления”.
+ 1) Создайте перечисление Color, которое будет содержать два члена, описывающих цвета фигур. Для каждого члена укажите связанное значение, определяющее наименование цвета на английском языке
+ 2) Создайте перечисление Type, членами которого будут являться шахматные фигуры. Для каждого члена укажите связанное значение, определяющее наименование фигуры на английском языке
+ 3) Объявите две переменные. Первой инициализируйте член перечисления Color, а второй – Type
+ 4) Создайте структуру Chessman, которая описывает сущность “шахматная фигура”.
+ Перечисление должно содержать следующие элементы:
+ – свойство color типа Color, определяющее цвет фиугры
+ – свойство type типа Type, определяющее тип фигуры
+ – свойство coordinates типа (Character, UInt)?, определяющее координаты фигуры на шахматной доске.
+ – свойство symbol, определяющее UTF-символ данной шахматной фигуры (тип Character)
+ – инициализатор, принимающий значения свойств color и type, и устанавливающий coordinates в nil, а symbol в ""
+ – инициализатор, принимающий на вход значения для всех свойств: color, type, coordinates, symbol
+ – метод setCoordinates(Character,UInt), позволяющий установить новые координаты фигуры
+ – метод kill(), сменяющий координаты на nil (убивающий фигуру)
+ 5) Объявите переменную whiteKing и инициализируйте ей значение типа Chessman, описывающее фигуру “Белый король”. Попробуйте использовать каждый из созданных методов структуры.
+ */
+
+enum Color: String {
+    case black = "Black"
+    case white = "White"
+}
+enum FigureType: String {
+    case pawn = "Pawn"
+    case bishop = "Bishop"
+    case knight = "Kinght"
+    case rook = "Rook"
+    case queen = "Queen"
+    case king = "King"
+}
+var color = Color.white
+var type = FigureType.rook
+
+struct ChessManStruct {
+    var color: Color
+    var type: FigureType
+    var coordinates: (Character, UInt)?
+    var symbol: Character
+    
+    init(color: Color, type: FigureType) {
+        self.color = color
+        self.type = type
+        coordinates = nil
+        symbol = Character("")
+    }
+    init(color: Color, type: FigureType, coordinates: (Character, UInt), symbol: Character) {
+        self.color = color
+        self.type = type
+        self.coordinates = coordinates
+        self.symbol = symbol
+    }
+    mutating func setCoordinates(coordinates: (Character, UInt)) {
+        self.coordinates = coordinates
+    }
+    mutating func kill() {
+        coordinates = nil
+    }
+}
+var greatWhiteKing = ChessManStruct(color: .white, type: .king, coordinates: ("A", 5), symbol: "♔")
+
+greatWhiteKing.coordinates
+greatWhiteKing.setCoordinates(coordinates: ("B", 5))
+greatWhiteKing.coordinates
+
+greatWhiteKing.kill()
+greatWhiteKing.coordinates
+
+
+/*
  
  */
