@@ -238,5 +238,37 @@ greatWhiteKing.coordinates
 
 
 /*
- 
+ Задание 3
+
+ 1) Cоздайте структуру, описывающую сущность “Пользователь”. В ее состав должны входить следюущие элементы:
+ – свойства, содержащие имя и фамилию
+ – инициализатор, принимающий только имя
+ – инициализатор, принимающий имя и фамилию
+ – метод, возвращающий информационную строку с указание имени и фамилии пользователя
+ – методы, изменяющие имя и фамилию
+ 2) Проверьте созданную структуру
  */
+
+struct User {
+    var name: String
+    var surname: String = "*unknown*"
+    func properties() -> String {
+        "Name: \(name), Surname: \(surname)"
+    }
+    mutating func changeName(name: String) {
+        self.name = name
+    }
+    mutating func changeSurname(surname: String) {
+        self.surname = surname
+    }
+}
+
+var userIharBlinau = User(name: "Ihar")
+print(userIharBlinau.properties())
+
+userIharBlinau.surname = "Blinau"
+print(userIharBlinau.properties())
+
+userIharBlinau.changeName(name: "Igor")
+userIharBlinau.changeSurname(surname: "Blinov")
+print(userIharBlinau.properties())
