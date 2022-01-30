@@ -319,3 +319,39 @@ var surnames = ["Alekseev", "Ihnatiev", "Vorobiev", "Volodin", "Vasin"]
 var guy = Employee(firstName: names.randomElement()!, secondName: surnames.randomElement()!, salary: RandomNumberGenerator(min: 20_000, max: 100_000).getNumber())
 
 print(guy)
+
+
+
+
+//                  Lesson 27. Init/deinit
+
+//          Homework
+
+/*
+ Задание 1
+
+ 1) Создайте перечисление DayOfWeek, членами которого будут являться дни недели. У каждого члена должно быть связанное целочисленное значение. указывающее на его порядковый номер
+ 2) В составе перечисления создайте проваливающийся (failable) инициализатор, который принимает на вход название дня недели на русском языке и возвращает соответсвующий член перечисления
+ В случае, если передано некорректное значение, необходимо вернуть nil
+ 3) Создайте переменную с использованием данного инициализатора
+ */
+
+enum DayOfWeek: Int {
+    case mon = 1, tue, wed, thu, fri, sat, sun
+    
+    init? (russianDayOfWeek: String) {
+        switch russianDayOfWeek {
+        case "Пн": self = .mon
+        case "Вт": self = .tue
+        case "Ср": self = .wed
+        case "Чт": self = .thu
+        case "Пт": self = .fri
+        case "Сб": self = .sat
+        case "Вс": self = .sun
+        default: return nil
+        }
+    }
+}
+
+var x = DayOfWeek(russianDayOfWeek: "Пн")
+var y = DayOfWeek(russianDayOfWeek: "xxxTentacion")
